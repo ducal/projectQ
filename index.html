@@ -1,23 +1,9 @@
+<!-- load jquery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
-
-
+<!-- load fetch() polyfill from polyfill.io -->
+<script crossorigin="anonymous" src="https://polyfill.io/v3/polyfill.min.js?features=fetch-polyfill"></script>
 <script>
-var rssurl = "https://www.reddit.com/user/AndHeWas/comments/.rss";
-$.get(rssurl, function(data) {
-    var $xml = $(data);
-    $xml.find("item").each(function() {
-        var $this = $(this),
-            item = {
-                title: $this.find("title").text(),
-                link: $this.find("link").text(),
-                description: $this.find("description").text(),
-                pubDate: $this.find("pubDate").text(),
-                author: $this.find("author").text()
-        }
-        //Do something with item here...
-		
-		console.log(item);
-    });
-});
-
+	fetch('https://jsonp.afeld.me/?url=https://www.reddit.com/user/AndHeWas/comments/.rss').then(function(data){
+		console.log(data);
+	});
 </script>
