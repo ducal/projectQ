@@ -1,0 +1,23 @@
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+
+<script>
+var rssurl = "https://www.reddit.com/user/AndHeWas/comments/.rss";
+$.get(rssurl, function(data) {
+    var $xml = $(data);
+    $xml.find("item").each(function() {
+        var $this = $(this),
+            item = {
+                title: $this.find("title").text(),
+                link: $this.find("link").text(),
+                description: $this.find("description").text(),
+                pubDate: $this.find("pubDate").text(),
+                author: $this.find("author").text()
+        }
+        //Do something with item here...
+		
+		console.log(item);
+    });
+});
+
+</script>
